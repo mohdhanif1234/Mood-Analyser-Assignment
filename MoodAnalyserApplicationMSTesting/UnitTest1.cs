@@ -7,38 +7,19 @@ namespace MoodAnalyserApplicationMSTesting
     [TestClass]
     public class UnitTest1
     {
-        // TC-1.1: Given message is "I am in sad mood" and it should return SAD
+        // TC-2.1: Given null mood should return HAPPY
         [TestMethod]
-        [TestCategory("sadgroup")]
+        [TestCategory("negativescenario")]
         // Creating a test method
-        public void Given_Sad_Message_Should_Return_Sad()
+        public void Given_Null_Should_Return_Happy()
         {
             // Arrange
-            string expected = "SAD";
-            string message = "I am in sad mood";
+            string expected = "HAPPY";
+            string message = null;
 
             // Act
             MoodAnalyser moodCheck = new MoodAnalyser(message);
             string actual = moodCheck.AnalyseMood(); // Calling a method
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        // TC-1.2: Given message is "I am in any mood" and it should return HAPPY
-        [TestMethod]
-        [TestCategory("happygroup")]
-        // Creating a test method
-
-        public void Given_Any_Message_Should_Return_Happy()
-        {
-            // Arrange
-            string expected = "HAPPY";
-            string message = "I am in any mood";
-
-            // Act
-            MoodAnalyser moodCheck = new MoodAnalyser(message);
-            string actual = moodCheck.AnalyseMood();
 
             // Assert
             Assert.AreEqual(expected, actual);

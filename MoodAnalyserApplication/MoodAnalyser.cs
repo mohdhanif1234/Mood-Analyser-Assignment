@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyserApplication
 {
-    // UC-1: Given a message, ability to analyse the mood whether happy or sad
+    // UC-2: Ability to handle exception if the user provides an invalid input like null
     public class MoodAnalyser
     {
         public string message; // Declaring a variable
@@ -19,11 +19,18 @@ namespace MoodAnalyserApplication
 
         public string AnalyseMood()
         {
-            if (this.message.Contains("sad"))
+            try
             {
-                return "SAD";
-            } 
-            else
+                if (this.message.Contains("sad"))
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
+            }
+             catch (NullReferenceException)
             {
                 return "HAPPY";
             }
