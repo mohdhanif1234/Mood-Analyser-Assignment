@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyserApplication
 {
-    // UC-2: Ability to handle exception if the user provides an invalid input like null
+    // UC-3: To inform the user if he/she enters an invalid mood
     public class MoodAnalyser
     {
         public string message; // Declaring a variable
@@ -21,6 +21,10 @@ namespace MoodAnalyserApplication
         {
             try
             {
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_TYPE_EXCEPTION, "Message should not be empty");
+                }
                 if (this.message.Contains("sad"))
                 {
                     return "SAD";
@@ -30,9 +34,13 @@ namespace MoodAnalyserApplication
                     return "HAPPY";
                 }
             }
-             catch (NullReferenceException)
+            catch (NullReferenceException)
             {
-                return "HAPPY";
+                throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.INVALID_MOOD_EXCEPTION, "Message should not be null");
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 
